@@ -36,11 +36,28 @@ describe('calculateMonthlyPayment', () => {
     expect(result.monthlyInterestRate).toBe(expectedMonthlyInterestRate)
   })
 
+  it('should be able to work out the monthly payment', () => {
+    const principleLoan = 1000;
+    const annualInterestRate = 10;
+    const loanTermYears = 1; 
+    const result = calculateMonthlyPayment(principleLoan, annualInterestRate, loanTermYears);
+    const monthlyInterestRate = annualInterestRate / 12 / 100;
+    const loanTermMonths = loanTermYears * 12;
+    const expectedMonthlyPayment = principleLoan * monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, - loanTermMonths));
+    expect(result.monthlyPayment).toBe(expectedMonthlyPayment.toFixed(2))
+  })
 
-
-
-  
-
+  it('should be able to work out the total anount payable after interest', () => {
+    const principleLoan = 1000;
+    const annualInterestRate = 10;
+    const loanTermYears = 1; 
+    const result = calculateMonthlyPayment(principleLoan, annualInterestRate, loanTermYears);
+    const monthlyInterestRate = annualInterestRate / 12 / 100;
+    const loanTermMonths = loanTermYears * 12;
+    const monthlyPayment = principleLoan * monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, - loanTermMonths));
+    const expectedTotalAmountPayable = monthlyPayment * loanTermMonths
+    expect(result.totalAmountPayable).toBe(expectedTotalAmountPayable.toFixed(2))
+  })
 })
 
 
