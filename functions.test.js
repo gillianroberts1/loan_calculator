@@ -1,37 +1,31 @@
 import { calculateMonthlyPayment } from "./functions";
 
+
+
 describe('calculateMonthlyPayment', () => {
-  it('should be able to get principleLoan amount', () => {
-    const principleLoan = 10000;
-    const annualInterestRate = 5.8;
-    const loanTermYears = 5;
-    const result = calculateMonthlyPayment(principleLoan, annualInterestRate, loanTermYears)
-    expect(result.principleLoan).toBe(10000)
+  let result;
+  const principleLoan = 10000;
+  const annualInterestRate = 5.8;
+  const loanTermYears = 5;
+  beforeEach(() => { 
+    result = calculateMonthlyPayment(principleLoan, annualInterestRate, loanTermYears)
+  })
+  it('should be able to get principleLoan amount', () => {  
+  expect(result.principleLoan).toBe(10000)
   })
 
   it('should be able get the annual interest rate', () => {
-    const principleLoan = 10000;
-    const annualInterestRate = 5.8;
-    const loanTermYears = 5;    
-    const result = calculateMonthlyPayment(principleLoan, annualInterestRate, loanTermYears)
     expect(result.annualInterestRate).toBe(5.8)
   })
 
   it('should be able to calculate the loan term in months', () => {
-    const principleLoan = 10000;
-    const annualInterestRate = 5.8;
-    const loanTermYears = 5; 
-    const result = calculateMonthlyPayment(principleLoan, annualInterestRate, loanTermYears);
     const expectedLoanTermMonths = loanTermYears * 12;  
     expect(result.loanTermMonths).toBe(expectedLoanTermMonths);
 
   })
 
   it('should be able to work out the monthly interest', () => {
-    const principleLoan = 10000;
-    const annualInterestRate = 5.8;
-    const loanTermYears = 5; 
-    const result = calculateMonthlyPayment(principleLoan, annualInterestRate, loanTermYears);
+
     const expectedMonthlyInterestRate = annualInterestRate / 12 / 100;
     expect(result.monthlyInterestRate).toBe(expectedMonthlyInterestRate)
   })
@@ -47,11 +41,7 @@ describe('calculateMonthlyPayment', () => {
     expect(result.monthlyPayment).toBe(expectedMonthlyPayment.toFixed(2))
   })
 
-  it('should be able to work out the total anount payable after interest', () => {
-    const principleLoan = 1000;
-    const annualInterestRate = 10;
-    const loanTermYears = 1; 
-    const result = calculateMonthlyPayment(principleLoan, annualInterestRate, loanTermYears);
+  it('should be able to work out the total anount payable after interest', () => {  
     const monthlyInterestRate = annualInterestRate / 12 / 100;
     const loanTermMonths = loanTermYears * 12;
     const monthlyPayment = principleLoan * monthlyInterestRate / (1 - Math.pow(1 + monthlyInterestRate, - loanTermMonths));

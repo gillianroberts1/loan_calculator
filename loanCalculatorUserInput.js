@@ -14,7 +14,7 @@ function calculateMonthlyPayment(principleLoan, annualInterestRate, loanTermYear
       annualInterestRate: annualInterestRate,
       monthlyPayment: monthlyPayment.toFixed(2),
       totalAmountPayable:(monthlyPayment * loanTermMonths).toFixed(2),
-      totalInterestPayable:((monthlyPayment * loanTermMonths) - principleLoan).toFixed(2)
+      totalInterestPayable:((monthlyPayment * loanTermMonths) - principleLoan).toFixed(2),
   }
   }
   
