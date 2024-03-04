@@ -1,5 +1,7 @@
 /*
 
+******* console logging version ******
+
 M = monthly payment
 P = principle loan amount
 r = monthly interest  apr / 12
